@@ -1,6 +1,6 @@
 # heliograph cloud documentation
 
-The public documentation for **heliograph cloud**, the hosted service. Five pages, in [`content/`](content/), under **CC BY 4.0**.
+The public documentation for **heliograph cloud**, the hosted service. In [`content/`](content/), under **CC BY 4.0**.
 
 heliograph moves documents across a gap you cannot cross yourself: you can reach a machine's operator but not the machine. The protocol, the CLI and the station are at [dbhq-uk/heliograph](https://github.com/dbhq-uk/heliograph); the relay server is at [dbhq-uk/heliograph-relay](https://github.com/dbhq-uk/heliograph-relay). This repository is the prose about the service built beside them.
 
@@ -12,7 +12,8 @@ heliograph moves documents across a gap you cannot cross yourself: you can reach
 | [What heliograph cloud can do, and what it cannot](content/security.md) | the security page. It opens with the fact that the service reads your logs in plaintext, because that is the thing you are deciding about |
 | [The threat model, in one table](content/threat-model.md) | every claim, the mechanism that enforces it, and the condition under which it fails. The page to read if you are evaluating this adversarially |
 | [What a heliograph record establishes, and the three things it does not](content/what-this-record-establishes.md) | read this before you put one of these logs in front of a client, an auditor or a regulator |
-| [What each transport gives you](content/what-each-transport-gives-you.md) | how the archive receives your runs, and the one thing a beacon estate does not get |
+
+**A fifth page is owed**, on what each transport gives you and the one thing a beacon estate does not get. It is written and it is not here yet, for a reason worth stating rather than leaving as a gap: its wording is held in place by a test in the private repository that reads the file, and publishing the page without first rebuilding that guard here would quietly remove the only thing stopping an overclaim that an adversarial review already caught once. The page arrives when the guard does.
 
 ## What this repository is not
 
