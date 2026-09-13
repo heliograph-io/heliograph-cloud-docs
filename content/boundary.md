@@ -101,7 +101,9 @@ The allowlist is a file rather than a policy note - `station/FAR-SIDE-BINARIES` 
 
 > DBHQ additionally permits deploying the relay to reach estates you or your clients operate, as part of professional services, provided you do not offer relay hosting itself as a hosted or subscription service to third parties.
 
-To be plain about where the line is: running relays to reach your own clients' machines is fine and is what the relay is for. Selling relay hosting to third parties is competing use, because hosted relay is a tier we sell.
+To be plain about where the line is: running relays to reach your own clients' machines is fine and is what the relay is for. Selling relay hosting to third parties is competing use, and it is the one use this grant deliberately does not reach.
+
+**That sentence used to end "because hosted relay is a tier we sell", and it was withdrawn on 2026-09-13 rather than edited away.** Nothing is being sold. [`README.md`](../README.md) says no page here states a price, a tier, an allowance or a launch date; [the threat model](threat-model.md) says "it is why nothing is being sold yet"; and the public relay page says "Free today. No card, no account, and nothing to buy" (`site/content/relay.md:44`). A licence page is where somebody checks a claim before a procurement review, so a tier asserted here and contradicted in three other places is exactly the sentence this page exists to catch. **The grant does not depend on it** - a copyright holder may always permit more than the licence does, whether or not anything is for sale.
 
 ## The security argument does not depend on any of this
 
