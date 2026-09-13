@@ -1,0 +1,62 @@
+name: DCO
+
+# heliograph-io/heliograph-cloud#3 decided DCO everywhere and no contributor
+# licence agreement anywhere: CC BY 4.0 has no copyleft, so nothing about the
+# hosted service depends on collecting copyright assignments, and the DCO
+# records the provenance that actually matters.
+#
+# This is a workflow rather than the GitHub DCO App because a workflow is in
+# the repository, is readable by the person it refuses, and arrives with the
+# clone. The App is a better experience and needs somebody with an account to
+# install it; it can be added later and this check then becomes redundant
+# rather than wrong.
+#
+# IT CHECKS EVERY COMMIT IN THE PULL REQUEST, not the head. A branch whose
+# last commit is signed off and whose first is not is the common case, and
+# checking only the head is a check that reports PASS while asserting almost
+# nothing.
+
+on:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  dco:
+    name: every commit is signed off
+    runs-on: ubuntu-latest
+    steps:
+      # fetch-depth 0, because the check walks the range and a shallow clone
+      # has no merge base to walk from. This failed first with "fatal: bad
+      # object" rather than with a missing sign-off, which is the confusing
+      # direction.
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: check Signed-off-by on every commit
+        env:
+          BASE: ${{ github.event.pull_request.base.sha }}
+          HEAD: ${{ github.event.pull_request.head.sha }}
+        run: |
+          set -uo pipefail
+          bad=0
+          for sha in $(git rev-list "$BASE..$HEAD"); do
+            # A merge commit carries no authorship of its own, so requiring a
+            # sign-off on one refuses a contributor for merging main into
+            # their branch, which is not a provenance question.
+            if [ "$(git rev-list --parents -n 1 "$sha" | wc -w)" -gt 2 ]; then
+              continue
+            fi
+            if git log -1 --format=%B "$sha" | grep -qi '^Signed-off-by: .* <.*@.*>'; then
+              continue
+            fi
+            echo "::error::$sha is not signed off: $(git log -1 --format=%s "$sha")"
+            bad=1
+          done
+          if [ "$bad" != "0" ]; then
+            echo "Sign off with 'git commit -s'. To fix a branch: git rebase --signoff <base> and force-push your own branch."
+            exit 1
+          fi
+          echo "every commit in this pull request is signed off"

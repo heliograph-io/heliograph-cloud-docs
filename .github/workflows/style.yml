@@ -1,0 +1,120 @@
+name: House style
+
+# The mechanical half of CONTRIBUTING.md#house-style, checked because a rule
+# nobody checks is a hope. Only the rules a machine can judge are here: the
+# ones that matter more - cite rather than assert, never state an inference as
+# an observation, never write "cannot" where the truth is "does not currently"
+# - need a reader.
+#
+# Mirrors the `style` job in heliograph's `validate.yml` and the one in
+# heliograph-cloud, minus everything about Go and terraform, because nothing is
+# built here.
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  style:
+    name: British English, plain hyphens, no em dashes
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      # Em dashes arrive with pasted model output and word-processor
+      # autocorrect rather than by choice, and a repository that mixes them
+      # reads as assembled rather than written.
+      #
+      # The en dash is here because the rule is "plain hyphens" rather than "no
+      # em dashes". In the sibling repository this check tested only the em
+      # dash for its first day, and an en dash shipped through a passing build
+      # inside an issue range - exactly where an en dash looks correct and
+      # where autocorrect inserts one. A check that enforces half of a stated
+      # rule reports PASS while the rule is being broken, which is worse than
+      # no check, because it is trusted.
+      #
+      # LICENSE is not matched: it has no extension, and the CC BY 4.0 legal
+      # code is somebody else's text. Editing a licence to satisfy a house
+      # style would be worse than the inconsistency.
+      - name: no em dashes, no en dashes
+        run: |
+          set -uo pipefail
+          hits="$(grep -rn "$(printf '\xe2\x80\x94\|\xe2\x80\x93')" --include='*.md' --include='*.yml' \
+                    --exclude-dir=.git . || true)"
+          if [ -n "$hits" ]; then
+            echo "$hits"
+            echo "::error::Em or en dash found. House style is a plain hyphen with spaces around it."
+            exit 1
+          fi
+          echo "no em dashes, no en dashes"
+
+      # A heading is a label, not a sentence. The rule is trivial on its own
+      # and earns its place by being the one people forget when pasting a
+      # sentence in as a heading.
+      - name: no trailing full stops on headings
+        run: |
+          set -uo pipefail
+          hits="$(grep -rn '^#\{1,6\} .*\.$' --include='*.md' --exclude-dir=.git . || true)"
+          if [ -n "$hits" ]; then
+            echo "$hits"
+            echo "::error::A heading ends in a full stop."
+            exit 1
+          fi
+          echo "no headings end in a full stop"
+
+      # This repository is public and holds nothing secret by design, so this
+      # is a backstop against habit rather than a real expectation. It costs
+      # nothing and the day it fires it will have been worth having.
+      - name: nothing that must never be in git
+        run: |
+          set -uo pipefail
+          keys="$(grep -rIn 'BEGIN [A-Z ]*PRIVATE KEY' --exclude-dir=.git . || true)"
+          if [ -n "$keys" ]; then
+            echo "$keys"
+            echo "::error::a private key is present"
+            exit 1
+          fi
+          echo "no private keys"
+
+      # Every page states its own licence position, and the repository has to
+      # carry the real text rather than a link to it. A LICENSE file that says
+      # "CC BY 4.0" and nothing else is a reference, not a grant, and GitHub's
+      # licence detection reads the text.
+      #
+      # Watched fail before keeping: the file was replaced with the single line
+      # "CC BY 4.0" and this step failed on the missing section heading.
+      - name: the licence is the real text
+        run: |
+          set -uo pipefail
+          bad=0
+          grep -q 'Attribution 4.0 International' LICENSE || { echo "::error::LICENSE does not name CC BY 4.0"; bad=1; }
+          grep -q 'Section 3 -- License Conditions' LICENSE || { echo "::error::LICENSE is not the legal code, only a reference to it"; bad=1; }
+          [ "$(wc -l < LICENSE)" -gt 300 ] || { echo "::error::LICENSE is too short to be the legal code"; bad=1; }
+          [ "$bad" = "0" ] || exit 1
+          echo "LICENSE is the CC BY 4.0 legal code"
+
+      # Every page in content/ is reachable from the README, because a page
+      # nobody links to is a page that goes stale unnoticed. heliograph's site
+      # generator fails a build on a page missing from its navigation for the
+      # same reason; this is the version of that rule that works before the
+      # generator reads this repository.
+      #
+      # Watched fail before keeping: a scratch page was added to content/ and
+      # this step named it.
+      - name: every page is linked from the README
+        run: |
+          set -uo pipefail
+          missing=0
+          for f in content/*.md; do
+            # An unmatched glob expands to itself, so a repository with no
+            # content/ yet would ask README.md for a file called "content/*.md"
+            # and fail for the wrong reason.
+            [ -e "$f" ] || continue
+            grep -q "$f" README.md || { echo "::error::$f is not linked from README.md"; missing=1; }
+          done
+          [ "$missing" = "0" ] || exit 1
+          echo "every page in content/ is linked from README.md"
