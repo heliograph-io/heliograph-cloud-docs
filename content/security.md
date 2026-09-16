@@ -1,4 +1,4 @@
-# What heliograph cloud can do, and what it cannot
+# What Heliograph Cloud can do, and what it cannot
 
 The relay page sets the standard this page has to meet. It leads with what the thing *can* do, and then says what it cannot, and every line of it is checkable against source you can read.
 
@@ -61,7 +61,7 @@ The refusal is published as a status, so you find out.
 
 So the sentence:
 
-> heliograph cloud cannot add a key to your station's trusted set. A change is a signed document your station verifies, the anchor can only be changed on the machine itself, and your station publishes the set it is verifying against - so you can audit who may command your estate from your own transport, with the CLI, without asking us.
+> Heliograph Cloud cannot add a key to your station's trusted set. A change is a signed document your station verifies, the anchor can only be changed on the machine itself, and your station publishes the set it is verifying against - so you can audit who may command your estate from your own transport, with the CLI, without asking us.
 
 **Two limits, and they are the reason this is not the end of the subject.**
 

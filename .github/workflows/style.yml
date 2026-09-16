@@ -118,3 +118,26 @@ jobs:
           done
           [ "$missing" = "0" ] || exit 1
           echo "every page in content/ is linked from README.md"
+
+      # The product's name, which changed on 2026-09-16 and is the kind of
+      # rename that reverts one string at a time: a new page, a copied
+      # paragraph, a quote pasted from an older document.
+      #
+      # Case-sensitive on purpose. `heliograph` lower case is correct and is
+      # the open project; `heliograph cloud` lower case was the product's name
+      # until the naming rule in heliograph-io/heliograph-cloud#245 replaced
+      # it, and is now wrong everywhere.
+      #
+      # Watched failing first, against this repository before the sweep: it
+      # reported five lines across README.md, boundary.md, security.md and
+      # threat-model.md.
+      - name: the product is Heliograph Cloud
+        run: |
+          set -uo pipefail
+          hits="$(grep -rn 'heliograph cloud' --include='*.md' --exclude-dir=.git . || true)"
+          if [ -n "$hits" ]; then
+            echo "$hits"
+            echo "::error::The product is Heliograph Cloud. The open project is heliograph, lower case."
+            exit 1
+          fi
+          echo "the product is named Heliograph Cloud throughout"

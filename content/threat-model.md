@@ -1,6 +1,6 @@
 # The threat model, in one table
 
-Every claim heliograph cloud makes, the mechanism that enforces it, and the condition under which it fails.
+Every claim Heliograph Cloud makes, the mechanism that enforces it, and the condition under which it fails.
 
 This page exists because in this market the claim is the product, and the fastest way to lose it is to write **cannot** where the truth is **does not currently**. So there is a status column, and three of the rows below say the claim is one we have stopped making.
 
