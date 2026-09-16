@@ -1,6 +1,6 @@
-# heliograph cloud documentation
+# Heliograph Cloud documentation
 
-The public documentation for **heliograph cloud**, the hosted service. In [`content/`](content/), under **CC BY 4.0**.
+The public documentation for **Heliograph Cloud**, the hosted service. In [`content/`](content/), under **CC BY 4.0**.
 
 heliograph moves documents across a gap you cannot cross yourself: you can reach a machine's operator but not the machine. The protocol, the CLI and the station are at [dbhq-uk/heliograph](https://github.com/dbhq-uk/heliograph); the relay server is at [dbhq-uk/heliograph-relay](https://github.com/dbhq-uk/heliograph-relay). This repository is the prose about the service built beside them.
 
@@ -9,7 +9,7 @@ heliograph moves documents across a gap you cannot cross yourself: you can reach
 | | |
 |---|---|
 | [What is open source, what is fair source, and what is not either](content/boundary.md) | which component carries which licence, what you can run yourself, and the two sentences being retired because they are false |
-| [What heliograph cloud can do, and what it cannot](content/security.md) | the security page. It opens with the fact that the service reads your logs in plaintext, because that is the thing you are deciding about |
+| [What Heliograph Cloud can do, and what it cannot](content/security.md) | the security page. It opens with the fact that the service reads your logs in plaintext, because that is the thing you are deciding about |
 | [The threat model, in one table](content/threat-model.md) | every claim, the mechanism that enforces it, and the condition under which it fails. The page to read if you are evaluating this adversarially |
 | [What a heliograph record establishes, and the three things it does not](content/what-this-record-establishes.md) | read this before you put one of these logs in front of a client, an auditor or a regulator |
 
@@ -17,7 +17,7 @@ heliograph moves documents across a gap you cannot cross yourself: you can reach
 
 ## What this repository is not
 
-**It is not the service.** heliograph cloud is proprietary and its code is not published. Neither is the broker. What is published is the relay, which is the component in the data path, and everything the CLI and the station do.
+**It is not the service.** Heliograph Cloud is proprietary and its code is not published. Neither is the broker. What is published is the relay, which is the component in the data path, and everything the CLI and the station do.
 
 **It is not marketing.** No page here states a price, a tier, an allowance or a launch date. Where a number is not measured, the page says it is not measured rather than estimating it.
 

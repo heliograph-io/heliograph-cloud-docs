@@ -17,7 +17,7 @@ Two things on this page are true today rather than pending, and they are marked 
 - **The CLI, the station, the wire format, the crypto and the interfaces become open source under Apache 2.0, permanently.** No employee cap, no revenue cap, no production-use cap, ever
 - **The relay becomes fair source under `FSL-1.1-ALv2`.** Publicly readable, free to run for your own purposes, and each release converts to Apache 2.0 two years after it ships. What it bans is offering relay hosting as a competing commercial service
 - **The broker is proprietary**, and is not published. It is many to many: routing, pairing, policy and orchestration across estates
-- **heliograph cloud is proprietary**: tenancy, billing, console, policy, archive
+- **Heliograph Cloud is proprietary**: tenancy, billing, console, policy, archive
 - **This documentation is CC BY 4.0** and its source is public, including the pages about the proprietary parts. That one is in force now: the licence is in this repository
 
 **Every transport shape works without paying**, on a relay you run yourself. Nothing that crosses the gap sits behind a paywall, and that is a commitment rather than a current state of affairs.
@@ -30,7 +30,7 @@ The licence column is the announced set, not the file on disk. See the tense not
 |---|---|---|---|
 | **open source** | CLI, station payloads, wire format, Noise handshake, `Transport` and `Channel` interfaces | **Apache 2.0** | genuinely open source, OSI-approved, permanently. Fork it, sell it, embed it |
 | **fair source** | the relay: one control to one station, carrying every shape | **`FSL-1.1-ALv2`** | publicly readable, free to use and self-host, **may not be offered as a competing commercial service**. Each release converts to Apache 2.0 two years after it ships |
-| **proprietary** | the broker, and heliograph cloud | none published | many-to-many orchestration; tenancy, billing, console, policy, archive |
+| **proprietary** | the broker, and Heliograph Cloud | none published | many-to-many orchestration; tenancy, billing, console, policy, archive |
 
 ### "Fair source" is a real term and we are using it because it is precise
 
