@@ -4,18 +4,20 @@ heliograph is three licences across four components, and this page exists so you
 
 If you are deciding whether to depend on this, the short version is at the top and everything under it is the detail behind it.
 
-## Read the tense before you read the table
+## This is in force, as of 17 September 2026
 
-**The licence set below is decided and is not yet applied.** `heliograph/LICENSE:1` and `heliograph-relay/LICENSE:1` both say "MIT License" this morning, and both repositories still carry an MIT badge (`heliograph/README.md:9`, `heliograph-relay/README.md:7`). So every row below is **what the announcement applies**, not what a `git clone` gives you today.
+Every row below describes what a `git clone` gives you today. `heliograph/LICENSE` is the Apache 2.0 text, `heliograph-relay/LICENSE` is FSL-1.1-ALv2, and both badges agree.
 
-That distinction is the whole reason this page is written the way it is. Publishing a licence in the present tense before the file says it is the same class of mistake as writing **cannot** where the truth is **does not currently**, and it has already happened once on this project. The note goes when the `LICENSE` files change, and not a day before.
+**Until that date this section said the opposite**, and it is worth knowing why rather than being deleted. It read "the licence set below is decided and is not yet applied ... every row below is what the announcement applies, not what a `git clone` gives you today", and it ended "the note goes when the `LICENSE` files change, and not a day before". Publishing a licence in the present tense before the file says it is the same class of mistake as writing **cannot** where the truth is **does not currently**, and it has happened on this project before.
 
-Two things on this page are true today rather than pending, and they are marked where they appear: the old MIT grant, which cannot be withdrawn, and this documentation's own CC BY 4.0 licence, which is in the repository you are reading.
+**Every commit published under MIT is still available under MIT, permanently.** A licence change cannot reach backwards. That is `b689f9c` and earlier in `heliograph`, `f664ea0` and earlier in `heliograph-relay`, including the relay's `v0.1.0` and `v0.1.1` tags.
+
+The full statement, including the professional-services grant and why fair source rather than AGPL, is at <https://docs.heliograph.io/licence>.
 
 ## The short version
 
-- **The CLI, the station, the wire format, the crypto and the interfaces become open source under Apache 2.0, permanently.** No employee cap, no revenue cap, no production-use cap, ever
-- **The relay becomes fair source under `FSL-1.1-ALv2`.** Publicly readable, free to run for your own purposes, and each release converts to Apache 2.0 two years after it ships. What it bans is offering relay hosting as a competing commercial service
+- **The CLI, the station, the wire format, the crypto and the interfaces are open source under Apache 2.0, permanently.** No employee cap, no revenue cap, no production-use cap, ever
+- **The relay is fair source under `FSL-1.1-ALv2`.** Publicly readable, free to run for your own purposes, and each release converts to Apache 2.0 two years after it ships. What it bans is offering relay hosting as a competing commercial service
 - **The broker is proprietary**, and is not published. It is many to many: routing, pairing, policy and orchestration across estates
 - **Heliograph Cloud is proprietary**: tenancy, billing, console, policy, archive
 - **This documentation is CC BY 4.0** and its source is public, including the pages about the proprietary parts. That one is in force now: the licence is in this repository
@@ -36,7 +38,7 @@ The licence column is the announced set, not the file on disk. See the tense not
 
 Fair Source is a defined initiative, not a phrase invented to avoid saying something worse. It means three things: the source is publicly readable, the restrictions are the minimum needed to protect the producer's business model, and there is **delayed open-source publication** on a stated clock. That last idea is itself an Open Source Initiative concept.
 
-Saying "fair source" about the relay will be accurate once the licence lands. Saying "open source" about it would not be, and we are not going to.
+Saying "fair source" about the relay is accurate. Saying "open source" about it would not be, and we are not going to.
 
 **And calling the broker fair source would be just as wrong.** Its source is not published, and nothing about it converts to Apache 2.0 on any clock. It is proprietary. There is no third category being smuggled in here.
 
@@ -47,7 +49,7 @@ This is the distinction the rest of the page rests on, and it is easy to blur.
 ```
    relay      one control  ──────────►  one station
               carries beacon, flare and beam
-              fair source once the announcement lands
+              fair source, FSL-1.1-ALv2
               always runnable by you
 
    broker     many controls ─────────►  many stations
